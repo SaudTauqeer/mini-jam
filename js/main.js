@@ -1,5 +1,6 @@
 //for cloning later on.
 const newCommentEl = document.getElementsByClassName("comment-new")[0];
+const inlineComment = document.getElementsByClassName("comment-container")[0];
 
 function handleAddNewCommentClick(e) {
   document.body.classList.add("noselect");
@@ -19,7 +20,7 @@ function appendNewCommentOnCoords(coords, targetNode) {
   const clonedNewCommentEl = newCommentEl.cloneNode(true);
 
   clonedNewCommentEl.style.display = "flex";
-  clonedNewCommentEl.position = "absolute";
+  clonedNewCommentEl.style.position = "absolute";
   clonedNewCommentEl.style.left = x + "px";
   clonedNewCommentEl.style.top = y + "px";
 
@@ -27,18 +28,18 @@ function appendNewCommentOnCoords(coords, targetNode) {
     if (e.tagName === "BUTTON" && e.className === "comment-save-button") {
       e.addEventListener(
         "click",
-        handleSaveComment.bind(e, clonedNewCommentEl, targetNode)
+        handleSaveComment.bind(e, clonedNewCommentEl, targetNode, coords)
       );
     }
   });
   document.body.append(clonedNewCommentEl);
 }
 
-function handleSaveComment(parentNodeOfSaveButton, targetNode) {
+function handleSaveComment(commentBox, targetNode, coords) {
   let saveButton = this;
-  const styleProps = parentNodeOfSaveButton.style;
+  const styleProps = commentBox.style;
   let inputText = "";
-  parentNodeOfSaveButton.childNodes.forEach((e) => {
+  commentBox.childNodes.forEach((e) => {
     if (e.tagName === "INPUT" && e.className === "input-reset") {
       inputText = e.value;
       return;
@@ -57,7 +58,27 @@ function handleSaveComment(parentNodeOfSaveButton, targetNode) {
     targetNode: targetNode,
     commentText: commentText,
   };
+
+  //show post comment state and remove comment box from dom.
   console.log(payload, "sent to database for processing.");
+  commentBox.remove();
+  showInlineComment(commentText, coords);
+}
+
+function showInlineComment(commentText, coords) {
+  const { x, y } = coords;
+  const inlineCommentClone = inlineComment.cloneNode(true);
+  inlineCommentClone.childNodes.forEach((e) => {
+    if (e.tagName === "P" && e.className === "comment-text") {
+      e.innerText = commentText;
+    }
+  });
+  console.log(x, y, "second");
+  inlineCommentClone.style.display = "inline-flex";
+  inlineCommentClone.style.position = "absolute";
+  inlineCommentClone.style.left = x + "px";
+  inlineCommentClone.style.top = y + "px";
+  document.body.append(inlineCommentClone);
 }
 
 function remove_character(str_to_remove, str) {
