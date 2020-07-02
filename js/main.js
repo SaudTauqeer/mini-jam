@@ -27,7 +27,7 @@ function appendNewCommentOnCoords(coords, targetNode) {
     if (e.tagName === "BUTTON" && e.className === "comment-save-button") {
       e.addEventListener(
         "click",
-        handleSaveComment.call(e, clonedNewCommentEl, targetNode)
+        handleSaveComment.bind(e, clonedNewCommentEl, targetNode)
       );
     }
   });
@@ -37,6 +37,16 @@ function appendNewCommentOnCoords(coords, targetNode) {
 function handleSaveComment(parentNodeOfSaveButton, targetNode) {
   let saveButton = this;
   const styleProps = parentNodeOfSaveButton.style;
+  let inputText = "";
+  parentNodeOfSaveButton.childNodes.forEach((e) => {
+    if (e.tagName === "INPUT" && e.className === "input-reset") {
+      inputText = e.value;
+      return;
+    }
+  });
+
+  const commentText = "" || inputText;
+
   //for saving in db
   const payload = {
     computedX: styleProps?.left,
@@ -44,10 +54,9 @@ function handleSaveComment(parentNodeOfSaveButton, targetNode) {
     pageX: remove_character("px", styleProps.left),
     pageY: remove_character("px", styleProps.left),
     targetNode: targetNode,
+    commentText: commentText,
     //do stuff with targetNode, just passing it for now since it's not actually being sent anywhere.
   };
-
-  let inputEl;
 }
 
 function remove_character(str_to_remove, str) {
