@@ -10,11 +10,11 @@ function handleAddNewCommentClick(e) {
     x,
     y,
   };
-
-  appendNewCommentOnCoords(coords);
+  const targetNode = e.target;
+  appendNewCommentOnCoords(coords, targetNode);
 }
 
-function appendNewCommentOnCoords(coords) {
+function appendNewCommentOnCoords(coords, targetNode) {
   const { x, y } = coords;
   const clonedNewCommentEl = newCommentEl.cloneNode(true);
 
@@ -23,9 +23,35 @@ function appendNewCommentOnCoords(coords) {
   clonedNewCommentEl.style.left = x + "px";
   clonedNewCommentEl.style.top = y + "px";
 
+  clonedNewCommentEl.childNodes.forEach((e) => {
+    if (e.tagName === "BUTTON" && e.className === "comment-save-button") {
+      e.addEventListener(
+        "click",
+        handleSaveComment.call(e, clonedNewCommentEl, targetNode)
+      );
+    }
+  });
   document.body.append(clonedNewCommentEl);
 }
 
-function handleSaveComment() {}
+function handleSaveComment(parentNodeOfSaveButton, targetNode) {
+  let saveButton = this;
+  const styleProps = parentNodeOfSaveButton.style;
+  //for saving in db
+  const payload = {
+    computedX: styleProps?.left,
+    computedY: styleProps?.top,
+    pageX: remove_character("px", styleProps.left),
+    pageY: remove_character("px", styleProps.left),
+    targetNode: targetNode,
+    //do stuff with targetNode, just passing it for now since it's not actually being sent anywhere.
+  };
 
+  let inputEl;
+}
+
+function remove_character(str_to_remove, str) {
+  let reg = new RegExp(str_to_remove);
+  return str.replace(reg, "").trim();
+}
 window.ondblclick = handleAddNewCommentClick;
