@@ -15,8 +15,7 @@ function handleAddNewCommentClick(e) {
     y,
   };
 
-  const commentText = "value from the text input.";
-  appendNewCommentOnCoords(coords, commentText);
+  appendNewCommentOnCoords(coords);
 }
 
 function appendNewCommentOnCoords(coords, commentText) {
@@ -30,5 +29,7 @@ function appendNewCommentOnCoords(coords, commentText) {
   clonedNewCommentEl.style.top = y + "px";
   document.body.append(clonedNewCommentEl);
 }
+
+function handleSaveComment() {}
 
 window.onclick = handleAddNewCommentClick;
