@@ -1,12 +1,8 @@
+//for cloning later on.
 const newCommentEl = document.getElementsByClassName("comment-new")[0];
 
-//for handling checkbox checked state on the parent div.
-const newCommentInputContainerEl = document.getElementsByClassName(
-  "comment-new"
-);
-const commentCheckboxEl = document.getElementById("comment-checkbox");
-
 function handleAddNewCommentClick(e) {
+  document.body.classList.add("noselect");
   //center origin is top-left.
   const x = e.pageX;
   const y = e.pageY;
@@ -18,8 +14,7 @@ function handleAddNewCommentClick(e) {
   appendNewCommentOnCoords(coords);
 }
 
-function appendNewCommentOnCoords(coords, commentText) {
-  console.log("here");
+function appendNewCommentOnCoords(coords) {
   const { x, y } = coords;
   const clonedNewCommentEl = newCommentEl.cloneNode(true);
 
@@ -27,9 +22,10 @@ function appendNewCommentOnCoords(coords, commentText) {
   clonedNewCommentEl.position = "absolute";
   clonedNewCommentEl.style.left = x + "px";
   clonedNewCommentEl.style.top = y + "px";
+
   document.body.append(clonedNewCommentEl);
 }
 
 function handleSaveComment() {}
 
-window.onclick = handleAddNewCommentClick;
+window.ondblclick = handleAddNewCommentClick;

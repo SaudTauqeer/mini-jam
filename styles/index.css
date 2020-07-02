@@ -60,6 +60,7 @@ body {
 }
 
 .comment-new {
+  min-height: 100px;
   width: 365px;
   box-sizing: border-box;
   display: flex;
@@ -83,6 +84,16 @@ body {
   padding: 0px;
 }
 
+.input-reset {
+  border: none;
+  background-image: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  outline: none;
+}
+
 .comment-checkbox {
   cursor: pointer;
   width: 100%;
@@ -95,4 +106,14 @@ body {
   align-items: center;
   color: rgb(149, 155, 153);
   padding: 1rem;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
