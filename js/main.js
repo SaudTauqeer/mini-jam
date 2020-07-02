@@ -52,11 +52,12 @@ function handleSaveComment(parentNodeOfSaveButton, targetNode) {
     computedX: styleProps?.left,
     computedY: styleProps?.top,
     pageX: remove_character("px", styleProps.left),
-    pageY: remove_character("px", styleProps.left),
+    pageY: remove_character("px", styleProps.top),
+    //do stuff with targetNode, just passing it for now since it's not actually being sent anywhere.
     targetNode: targetNode,
     commentText: commentText,
-    //do stuff with targetNode, just passing it for now since it's not actually being sent anywhere.
   };
+  console.log(payload, "sent to database for processing.");
 }
 
 function remove_character(str_to_remove, str) {
