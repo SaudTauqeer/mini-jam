@@ -1,0 +1,45 @@
+html,
+body {
+  height: 100%;
+  font-family: "Raleway", sans-serif;
+  background-color: #f9f9ff;
+}
+
+.container_main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comment-text {
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-top: initial;
+  margin-bottom: initial;
+  margin-right: 4px;
+  margin-left: 4px;
+  line-height: 20px;
+  font-size: 14px;
+  color: rgb(42, 54, 50);
+  overflow: hidden;
+}
+
+.comment-container {
+  background: rgb(255, 255, 255);
+  padding: 5px 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgb(212, 215, 214);
+  max-width: 400px;
+  height: 48px;
+
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.comment-open {
+}
