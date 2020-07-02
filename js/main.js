@@ -1,6 +1,4 @@
-//cloned new comment element for appending later on.
-const commentNewEl = document.getElementsByClassName("comment-new")[0];
-const clonedCommentNewEl = commentNewEl.cloneNode(true);
+const newCommentEl = document.getElementsByClassName("comment-new")[0];
 
 //for handling checkbox checked state on the parent div.
 const newCommentInputContainerEl = document.getElementsByClassName(
@@ -9,7 +7,28 @@ const newCommentInputContainerEl = document.getElementsByClassName(
 const commentCheckboxEl = document.getElementById("comment-checkbox");
 
 function handleAddNewCommentClick(e) {
-  console.log("alright", e);
+  //center origin is top-left.
+  const x = e.pageX;
+  const y = e.pageY;
+  const coords = {
+    x,
+    y,
+  };
+
+  const commentText = "value from the text input.";
+  appendNewCommentOnCoords(coords, commentText);
+}
+
+function appendNewCommentOnCoords(coords, commentText) {
+  console.log("here");
+  const { x, y } = coords;
+  const clonedNewCommentEl = newCommentEl.cloneNode(true);
+
+  clonedNewCommentEl.display = "block";
+  clonedNewCommentEl.position = "absolute";
+  clonedNewCommentEl.style.left = x + "px";
+  clonedNewCommentEl.style.top = y + "px";
+  document.body.append(clonedNewCommentEl);
 }
 
 window.onclick = handleAddNewCommentClick;
