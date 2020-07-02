@@ -35,10 +35,28 @@ body {
   height: 48px;
 
   border-radius: 16px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+.comment-time {
+  color: rgba(42, 54, 50, 0.5);
+  font-size: 14px;
+  white-space: nowrap;
+  line-height: 20px;
+  font-weight: 400;
+}
+.comment-profile {
+  height: 24px;
+  width: 24px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 12px;
+  border-radius: 50%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(234, 235, 235);
+  border-image: initial;
 }
 
 .comment-open {
