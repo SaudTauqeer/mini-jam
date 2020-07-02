@@ -60,6 +60,7 @@ body {
 }
 
 .comment-new {
+  display: none;
   min-height: 100px;
   width: 365px;
   box-sizing: border-box;
@@ -78,7 +79,6 @@ body {
   border-image: initial;
   padding: 0px;
 
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;

@@ -18,7 +18,7 @@ function appendNewCommentOnCoords(coords, targetNode) {
   const { x, y } = coords;
   const clonedNewCommentEl = newCommentEl.cloneNode(true);
 
-  clonedNewCommentEl.display = "block";
+  clonedNewCommentEl.style.display = "flex";
   clonedNewCommentEl.position = "absolute";
   clonedNewCommentEl.style.left = x + "px";
   clonedNewCommentEl.style.top = y + "px";
